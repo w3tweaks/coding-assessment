@@ -27,7 +27,7 @@ export class TodosService {
   }
 
   toggleComplete(index: number): void {
-    this.store.dispatch(TodoActions.toggleComplete({ index }));
+    this.store.dispatch(TodoActions.toggleCompleted({ index }));
   }
 
   updateTodo(index: number, text: string): void {

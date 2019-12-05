@@ -21,7 +21,7 @@ describe('Todos Reducer', () => {
     it('Should add a new Todo', () => {
       const todo: ITodo = {
         text: 'New todo',
-        complete: false,
+        completed: false,
       };
 
       const newState = todosReducer(state, TodoActions.addTodo({ todo }));
@@ -33,12 +33,12 @@ describe('Todos Reducer', () => {
     it('should remove a Todo', () => {
       const todo1: ITodo = {
         text: 'Todo 1',
-        complete: false,
+        completed: false,
       };
 
       const todo2: ITodo = {
         text: 'Todo 2',
-        complete: false,
+        completed: false,
       };
 
       let newState: ITodosState;
@@ -50,21 +50,21 @@ describe('Todos Reducer', () => {
     });
   });
 
-  describe('Toggle Todo complete', () => {
-    it('should toggle a todo as complete or not complete', () => {
+  describe('Toggle Todo completed', () => {
+    it('should toggle a todo as completed or not completed', () => {
       const todo: ITodo = {
         text: 'New todo',
-        complete: false,
+        completed: false,
       };
 
       let newState: ITodosState;
 
       newState = todosReducer(state, TodoActions.addTodo({ todo }));
-      newState = todosReducer(newState, TodoActions.toggleComplete({ index: 0 }));
-      expect(newState.todos[0].complete).toEqual(true);
+      newState = todosReducer(newState, TodoActions.toggleCompleted({ index: 0 }));
+      expect(newState.todos[0].completed).toEqual(true);
 
-      newState = todosReducer(newState, TodoActions.toggleComplete({ index: 0 }));
-      expect(newState.todos[0].complete).toEqual(false);
+      newState = todosReducer(newState, TodoActions.toggleCompleted({ index: 0 }));
+      expect(newState.todos[0].completed).toEqual(false);
     });
   });
 
@@ -72,17 +72,17 @@ describe('Todos Reducer', () => {
     it('should update the `text` of a todo', () => {
       const todo1: ITodo = {
         text: 'Todo 1',
-        complete: false,
+        completed: false,
       };
 
       const todo2: ITodo = {
         text: 'Todo 2',
-        complete: false,
+        completed: false,
       };
 
       const todo3: ITodo = {
         text: 'Todo 3',
-        complete: false,
+        completed: false,
       };
 
       let newState: ITodosState;

@@ -22,9 +22,9 @@ export function todosReducer(state: ITodosState, action: Action) {
       ...existingState,
       todos: existingState.todos.splice(index, 1),
     })),
-    on(TodoActions.toggleComplete, (existingState, { index }) => {
-      const todo = existingState.todos[index];
-      todo.complete = !todo.complete;
+    on(TodoActions.toggleCompleted, (existingState, { index }) => {
+      const todo = {...existingState.todos[index]};
+      todo.completed = !todo.completed;
 
       return Object.assign({}, existingState, {
         todos: [...existingState.todos.slice(0, index), todo, ...existingState.todos.slice(index + 1)],

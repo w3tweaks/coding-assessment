@@ -1,0 +1,3 @@
+<ul class="todo-list" *ngIf="todos">
+  <app-todo *ngFor="let todo of todos; let i = index;" [todo]="todo" [index]="i" (completeTodo)="onTodoCompleted($event)"></app-todo>
+</ul>

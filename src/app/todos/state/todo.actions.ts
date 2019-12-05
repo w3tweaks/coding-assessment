@@ -16,7 +16,7 @@ export const updateTodo = createAction(
   props<{ index: number, text: string }>(),
 );
 
-export const toggleComplete = createAction(
-  '[Todos] Toggle Complete',
+export const toggleCompleted = createAction(
+  '[Todos] Toggle Completed',
   props<{ index: number }>(),
 );
