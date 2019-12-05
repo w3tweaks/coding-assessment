@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { StoreModule } from '@ngrx/store';
 
 import { CreateTodoFormComponent } from './components/forms/create-todo/create-todo.component';
+import { FilterModeComponent } from './components/filter-mode/filter-mode.component';
 import { TodoComponent } from './components/todo/todo.component';
 import { TodosListComponent } from './components/todo-list/todo-list.component';
 import { TodosService } from './services/todos.service';
@@ -11,6 +12,7 @@ import { todosReducer } from './state/todos.reducer';
 
 const DECLARATIONS = [
   CreateTodoFormComponent,
+  FilterModeComponent,
   TodoComponent,
   TodosListComponent,
 ];

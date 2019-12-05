@@ -7,3 +7,8 @@ export const todos = createSelector(
   todosSelector,
   todosState.todos,
 );
+
+export const filterMode = createSelector(
+  todosSelector,
+  todosState.filterMode,
+);

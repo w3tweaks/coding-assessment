@@ -1,13 +1,16 @@
 import { Action, createReducer, on, State } from '@ngrx/store';
 import * as TodoActions from './todo.actions';
 
+import { FILTER_MODES } from './../constants/filter-modes';
 import { ITodo } from '../interfaces/ITodo';
 
 export interface ITodosState {
+  filterMode?: FILTER_MODES;
   todos?: ITodo[];
 }
 
 export const initialState: ITodosState = {
+  filterMode: 'All',
   todos: [],
 };
 
@@ -38,7 +41,12 @@ export function todosReducer(state: ITodosState, action: Action) {
         todos: [...existingState.todos.slice(0, index), todo, ...existingState.todos.slice(index + 1)],
       } as ITodosState);
     }),
+    on(TodoActions.filterTodos, (existingState, { filterMode }) => ({
+      ...existingState,
+      filterMode,
+    })),
   )(state, action);
 }
 
 export const todos = (state: ITodosState) => state.todos;
+export const filterMode = (state: ITodosState) => state.filterMode;

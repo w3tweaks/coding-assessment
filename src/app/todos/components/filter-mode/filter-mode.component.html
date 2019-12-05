@@ -1,0 +1,11 @@
+<ul class="filters">
+  <li>
+    <a href="#" (click)="setFilterMode('All')" [ngClass]="{ 'selected': filterMode === 'All' }">All</a>
+  </li>
+  <li>
+    <a href="#" (click)="setFilterMode('Active')" [ngClass]="{ 'selected': filterMode === 'Active' }">Active</a>
+  </li>
+  <li>
+    <a href="#" (click)="setFilterMode('Completed')" [ngClass]="{ 'selected': filterMode === 'Completed' }">Completed</a>
+  </li>
+</ul>
