@@ -93,4 +93,32 @@ describe('Todos Reducer', () => {
       expect(newState.todos[1].text).toEqual('Updated');
     });
   });
+
+  describe('Toggle All Completed', () => {
+    const todo1: ITodo = {
+      text: 'Todo 1',
+      completed: false,
+    };
+
+    const todo2: ITodo = {
+      text: 'Todo 2',
+      completed: false,
+    };
+
+    let newState: ITodosState;
+    newState = todosReducer(state, TodoActions.addTodo({ todo: todo1 }));
+    newState = todosReducer(newState, TodoActions.addTodo({ todo: todo2 }));
+
+    it('should set all `Active` todos as `Completed`', () => {
+      newState = todosReducer(newState, TodoActions.toggleAllCompleted());
+      expect(newState.todos[0].completed).toBeTrue();
+      expect(newState.todos[1].completed).toBeTrue();
+    });
+
+    it('should set all `Completed` todos as `Active`', () => {
+      newState = todosReducer(newState, TodoActions.toggleAllCompleted());
+      expect(newState.todos[0].completed).toBeFalse();
+      expect(newState.todos[1].completed).toBeFalse();
+    });
+  });
 });
