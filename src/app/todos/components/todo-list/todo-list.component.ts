@@ -7,11 +7,15 @@ import { TodosService } from '@app/todos/services/todos.service';
 
 @Component({
   selector: 'app-todos-list',
+  styleUrls: [
+    './todo-list.component.scss',
+  ],
   templateUrl: './todo-list.component.html',
 })
 export class TodosListComponent implements OnInit, OnDestroy {
 
   filterMode: FILTER_MODES;
+  noMatches: boolean;
   subscription: Subscription;
   todos: ITodo[];
 
@@ -43,6 +47,8 @@ export class TodosListComponent implements OnInit, OnDestroy {
         default:
           this.todos = allTodos;
       }
+
+      this.noMatches = this.filterMode !== 'All' && this.todos.length === 0;
     })
   }
 
