@@ -30,3 +30,7 @@ export const filterTodos = createAction(
   '[Todos] Filter Todos',
   props<{ filterMode: FILTER_MODES }>(),
 );
+
+export const clearCompleted = createAction(
+  '[Todos] Clear Completed',
+);

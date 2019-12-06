@@ -3,6 +3,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { StoreModule } from '@ngrx/store';
 
+import { ClearCompletedComponent } from './components/clear-completed/clear-completed.component';
 import { CompleteAllComponent } from './components/complete-all/complete-all.component';
 import { CreateTodoFormComponent } from './components/create-todo/create-todo.component';
 import { FilterModeComponent } from './components/filter-mode/filter-mode.component';
@@ -12,6 +13,7 @@ import { TodosService } from './services/todos.service';
 import { todosReducer } from './state/todos.reducer';
 
 const DECLARATIONS = [
+  ClearCompletedComponent,
   CompleteAllComponent,
   CreateTodoFormComponent,
   FilterModeComponent,

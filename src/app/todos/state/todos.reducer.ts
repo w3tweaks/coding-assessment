@@ -53,6 +53,10 @@ export function todosReducer(state: ITodosState, action: Action) {
         return updatedTodo;
       })]
     })),
+    on(TodoActions.clearCompleted, (existingState) => ({
+      ...existingState,
+      todos: [...existingState.todos.filter(todo => !todo.completed)],
+    })),
   )(state, action);
 }
 

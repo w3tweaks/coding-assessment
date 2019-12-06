@@ -45,5 +45,7 @@ export class TodosService {
     this.store.dispatch(TodoActions.filterTodos({ filterMode }));
   }
 
-
+  clearCompleted(): void {
+    this.store.dispatch(TodoActions.clearCompleted());
+  }
 }
