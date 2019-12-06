@@ -3,8 +3,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { StoreModule } from '@ngrx/store';
 
-import { CompleteAllComponent } from './components/forms/complete-all/complete-all.component';
-import { CreateTodoFormComponent } from './components/forms/create-todo/create-todo.component';
+import { CompleteAllComponent } from './components/complete-all/complete-all.component';
+import { CreateTodoFormComponent } from './components/create-todo/create-todo.component';
 import { FilterModeComponent } from './components/filter-mode/filter-mode.component';
 import { TodoComponent } from './components/todo/todo.component';
 import { TodosListComponent } from './components/todo-list/todo-list.component';
