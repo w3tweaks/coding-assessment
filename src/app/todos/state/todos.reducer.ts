@@ -25,9 +25,9 @@ export function todosReducer(state: ITodosState, action: Action) {
       const updatedTodos = [...existingState.todos];
       updatedTodos.splice(index, 1);
 
-      return Object.assign({}, existingState, <ITodosState>{
+      return Object.assign({}, existingState, {
         todos: updatedTodos,
-      });
+      } as ITodosState);
     }),
     on(TodoActions.toggleCompleted, (existingState, { index }) => {
       const todo = {...existingState.todos[index]};
@@ -45,9 +45,9 @@ export function todosReducer(state: ITodosState, action: Action) {
         todos: [...existingState.todos.slice(0, index), todo, ...existingState.todos.slice(index + 1)],
       } as ITodosState);
     }),
-    on(TodoActions.changeFilterMode, (existingState, { filterMode }) => ({
+    on(TodoActions.changeFilterMode, (existingState, { mode }) => ({
       ...existingState,
-      filterMode,
+      filterMode: mode,
     })),
     on(TodoActions.toggleAllCompleted, (existingState) => ({
       ...existingState,

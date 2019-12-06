@@ -28,7 +28,7 @@ export const toggleAllCompleted = createAction(
 
 export const changeFilterMode = createAction(
   '[Todos] Change Filter Mode',
-  props<{ filterMode: FILTER_MODES }>(),
+  props<{ mode: FILTER_MODES }>(),
 );
 
 export const clearCompleted = createAction(
