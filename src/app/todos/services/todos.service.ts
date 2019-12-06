@@ -33,6 +33,10 @@ export class TodosService {
     this.store.dispatch(TodoActions.toggleCompleted({ index }));
   }
 
+  toggleAllCompleted(): void {
+    this.store.dispatch(TodoActions.toggleAllCompleted());
+  }
+
   updateTodo(index: number, text: string): void {
     this.store.dispatch(TodoActions.updateTodo({ index, text }));
   }
@@ -40,5 +44,6 @@ export class TodosService {
   filterTodos(filterMode: FILTER_MODES): void {
     this.store.dispatch(TodoActions.filterTodos({ filterMode }));
   }
+
 
 }

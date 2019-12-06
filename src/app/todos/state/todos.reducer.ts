@@ -45,6 +45,14 @@ export function todosReducer(state: ITodosState, action: Action) {
       ...existingState,
       filterMode,
     })),
+    on(TodoActions.toggleAllCompleted, (existingState) => ({
+      ...existingState,
+      todos: [...existingState.todos.map(todo => {
+        const updatedTodo = {...todo};
+        updatedTodo.completed = !updatedTodo.completed;
+        return updatedTodo;
+      })]
+    })),
   )(state, action);
 }
 

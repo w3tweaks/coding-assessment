@@ -22,6 +22,10 @@ export const toggleCompleted = createAction(
   props<{ index: number }>(),
 );
 
+export const toggleAllCompleted = createAction(
+  '[Todos] Toggle All Completed',
+);
+
 export const filterTodos = createAction(
   '[Todos] Filter Todos',
   props<{ filterMode: FILTER_MODES }>(),
