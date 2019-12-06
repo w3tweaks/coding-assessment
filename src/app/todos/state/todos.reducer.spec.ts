@@ -121,4 +121,24 @@ describe('Todos Reducer', () => {
       expect(newState.todos[1].completed).toBeFalse();
     });
   });
+
+  describe('Clear Completed', () => {
+    it('should clear all `Completed` todos', () => {
+      const todo1: ITodo = {
+        text: 'Todo 1',
+        completed: false,
+      };
+
+      const todo2: ITodo = {
+        text: 'Todo 2',
+        completed: true,
+      };
+
+      let newState: ITodosState;
+      newState = todosReducer(state, TodoActions.addTodo({ todo: todo1 }));
+      newState = todosReducer(newState, TodoActions.addTodo({ todo: todo2 }));
+      newState = todosReducer(newState, TodoActions.clearCompleted());
+      expect(newState.todos.length).toEqual(1);
+    });
+  });
 });
