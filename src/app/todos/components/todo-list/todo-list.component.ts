@@ -32,24 +32,9 @@ export class TodosListComponent implements OnInit, OnDestroy {
     ])
     .subscribe(state => {
       this.filterMode = state[0];
-
-      const allTodos = state[1];
-
-      switch(this.filterMode) {
-        case 'Active':
-          this.todos = allTodos.filter(todo => !todo.completed);
-          break;
-
-        case 'Completed':
-          this.todos = allTodos.filter(todo => todo.completed);
-          break;
-
-        default:
-          this.todos = allTodos;
-      }
-
+      this.todos = state[1];
       this.noMatches = this.filterMode !== 'All' && this.todos.length === 0;
-    })
+    });
   }
 
   ngOnDestroy(): void {
