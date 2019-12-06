@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ChangeDetectorRef, ChangeDetectionStrategy, Component, OnInit, OnDestroy } from '@angular/core';
 import { combineLatest, Subscription } from 'rxjs';
 
 import { ITodo } from '@app/todos/interfaces/ITodo';
@@ -6,6 +6,7 @@ import { FILTER_MODES } from '@app/todos/constants/filter-modes';
 import { TodosService } from '@app/todos/services/todos.service';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-todos-list',
   styleUrls: [
     './todo-list.component.scss',
@@ -20,20 +21,22 @@ export class TodosListComponent implements OnInit, OnDestroy {
   todos: ITodo[];
 
   constructor (
+    private changeDetectorRef: ChangeDetectorRef,
     private todosService: TodosService,
   ) {}
 
   ngOnInit(): void {
-    this.subscription = this.todosService.todos$.subscribe(todos => this.todos = todos);
-
     this.subscription = combineLatest([
       this.todosService.filterMode$,
       this.todosService.todos$,
+      this.todosService.allTodos$,
     ])
     .subscribe(state => {
       this.filterMode = state[0];
       this.todos = state[1];
-      this.noMatches = this.filterMode !== 'All' && this.todos.length === 0;
+      const todosExist = state[2] && state[2].length > 0;
+      this.noMatches = this.filterMode !== 'All' && todosExist && this.todos.length === 0;
+      this.changeDetectorRef.markForCheck();
     });
   }
 

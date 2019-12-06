@@ -1,11 +1,11 @@
 <ul class="filters">
   <li>
-    <a href="#" (click)="changeFilterMode('All')" [ngClass]="{ 'selected': filterMode === 'All' }">All</a>
+    <a href="#" (click)="changeFilterMode($event, 'All')" [ngClass]="{ 'selected': filterMode === 'All' }">All</a>
   </li>
   <li>
-    <a href="#" (click)="changeFilterMode('Active')" [ngClass]="{ 'selected': filterMode === 'Active' }">Active</a>
+    <a href="#" (click)="changeFilterMode($event, 'Active')" [ngClass]="{ 'selected': filterMode === 'Active' }">Active</a>
   </li>
   <li>
-    <a href="#" (click)="changeFilterMode('Completed')" [ngClass]="{ 'selected': filterMode === 'Completed' }">Completed</a>
+    <a href="#" (click)="changeFilterMode($event, 'Completed')" [ngClass]="{ 'selected': filterMode === 'Completed' }">Completed</a>
   </li>
 </ul>
