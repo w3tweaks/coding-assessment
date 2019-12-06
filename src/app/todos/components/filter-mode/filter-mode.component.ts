@@ -25,8 +25,8 @@ export class FilterModeComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  setFilterMode(filterMode: FILTER_MODES): void {
-    this.todosService.filterTodos(filterMode);
+  changeFilterMode(filterMode: FILTER_MODES): void {
+    this.todosService.changeFilterMode(filterMode);
   }
 
 }

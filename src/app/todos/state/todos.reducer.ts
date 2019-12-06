@@ -45,7 +45,7 @@ export function todosReducer(state: ITodosState, action: Action) {
         todos: [...existingState.todos.slice(0, index), todo, ...existingState.todos.slice(index + 1)],
       } as ITodosState);
     }),
-    on(TodoActions.filterTodos, (existingState, { filterMode }) => ({
+    on(TodoActions.changeFilterMode, (existingState, { filterMode }) => ({
       ...existingState,
       filterMode,
     })),

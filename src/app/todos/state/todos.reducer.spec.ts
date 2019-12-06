@@ -46,7 +46,7 @@ describe('Todos Reducer', () => {
       newState = todosReducer(state, TodoActions.addTodo({ todo: todo1 }));
       newState = todosReducer(newState, TodoActions.addTodo({ todo: todo2 }));
       newState = todosReducer(newState, TodoActions.removeTodo({ index: 0 }));
-      expect(newState.todos).toEqual([todo2]);
+      expect(newState.todos).toEqual([todo1]);
     });
   });
 
