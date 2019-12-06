@@ -60,4 +60,8 @@ export class TodosListComponent implements OnInit, OnDestroy {
     this.todosService.toggleComplete(index);
   }
 
+  onRemoveTodo(index: number): void {
+    this.todosService.removeTodo(index);
+  }
+
 }

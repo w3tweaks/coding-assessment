@@ -17,8 +17,15 @@ export class TodoComponent {
   @Output()
   completeTodo = new EventEmitter<number>();
 
+  @Output()
+  removeTodo = new EventEmitter<number>();
+
   markAsComplete(): void {
     this.completeTodo.emit(this.index);
+  }
+
+  remove(): void {
+    this.removeTodo.emit(this.index);
   }
 
 }

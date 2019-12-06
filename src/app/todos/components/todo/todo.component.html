@@ -2,6 +2,6 @@
   <div class="view">
     <input class="toggle" type="checkbox" [attr.checked]="todo.completed" (change)="markAsComplete()" />
     <label>{{ todo.text }}</label>
-    <button class="destroy"></button>
+    <button class="destroy" (click)="remove()"></button>
   </div>
 </li>
