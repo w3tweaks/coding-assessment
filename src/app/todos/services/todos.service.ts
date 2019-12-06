@@ -11,12 +11,14 @@ import * as todoSelectors from '../state/todo.selectors';
 @Injectable()
 export class TodosService {
 
+  allTodos$: Observable<ITodo[]>;
   filterMode$: Observable<FILTER_MODES>;
   todos$: Observable<ITodo[]>;
 
   constructor(
     private store: Store<ITodosState>,
   ) {
+    this.allTodos$ = this.store.select(todoSelectors.allTodos);
     this.filterMode$ = this.store.select(todoSelectors.filterMode);
     this.todos$ = this.store.select(todoSelectors.todos);
   }
@@ -41,8 +43,8 @@ export class TodosService {
     this.store.dispatch(TodoActions.updateTodo({ index, text }));
   }
 
-  changeFilterMode(filterMode: FILTER_MODES): void {
-    this.store.dispatch(TodoActions.changeFilterMode({ filterMode }));
+  changeFilterMode(mode: FILTER_MODES): void {
+    this.store.dispatch(TodoActions.changeFilterMode({ mode }));
   }
 
   clearCompleted(): void {
