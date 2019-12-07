@@ -1,7 +1,7 @@
 # Todos
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.19.
-# LabCorp Clinical Development Angular Development Assessment
+# LabCorp Clinical Development Angular Developer Assessment
 
 Thank you for your interest in working with us at LabCorp! This project is a fork of [Todo MVC](http://todomvc.com/)
 
