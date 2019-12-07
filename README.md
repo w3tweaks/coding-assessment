@@ -7,7 +7,7 @@ Thank you for your interest in working with us at LabCorp! This project is a for
 
 Your mission, should you choose to accept it, is to fork this repo and make the site functionally equivalent to: [http://todomvc.com/examples/vanillajs/](http://todomvc.com/examples/vanillajs/).
 
-The previous developer left the project half-finshed, but quite a bit of infrastructure in place and we'd like to see how you would finish it out.
+The previous developer left the project half-finshed, but quite a bit of infrastructure is in place and we'd like to see how you would finish it out.
 
 - All of the styling for the app is complete and almost all of the HTML markup you'll need is present in the app.component.html file.
 - In order to complete this project, you're going to have to have knowledge of [Ngrx](https://ngrx.io/), inter-component communication and how to make components re-usable.
