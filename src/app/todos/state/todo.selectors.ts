@@ -13,6 +13,13 @@ export const allTodos = createSelector(
   todosState.todos,
 );
 
+export const todosExist = createSelector(
+  allTodos,
+  (todoObjects) => {
+    return todoObjects && todoObjects.length > 0;
+  }
+);
+
 export const todos = createSelector(
   filterMode,
   allTodos,

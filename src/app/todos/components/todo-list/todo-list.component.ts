@@ -29,12 +29,12 @@ export class TodosListComponent implements OnInit, OnDestroy {
     this.subscription = combineLatest([
       this.todosService.filterMode$,
       this.todosService.todos$,
-      this.todosService.allTodos$,
+      this.todosService.todosExist$,
     ])
     .subscribe(state => {
       this.filterMode = state[0];
       this.todos = state[1];
-      const todosExist = state[2] && state[2].length > 0;
+      const todosExist = state[2] !== null && state[2];
       this.noMatches = this.filterMode !== 'All' && todosExist && this.todos.length === 0;
       this.changeDetectorRef.markForCheck();
     });

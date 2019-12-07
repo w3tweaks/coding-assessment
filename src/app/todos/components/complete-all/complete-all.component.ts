@@ -22,7 +22,7 @@ export class CompleteAllComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.subscription = this.todosService.todos$.subscribe(todos => {
+    this.subscription = this.todosService.allTodos$.subscribe(todos => {
       this.multipleTodosExist = todos && todos.length > 1;
       this.changeDetectorRef.markForCheck();
     });
@@ -33,7 +33,6 @@ export class CompleteAllComponent implements OnInit, OnDestroy {
   }
 
   toggleCompleteAll(): void {
-    console.log('here');
     this.todosService.toggleAllCompleted();
   }
 

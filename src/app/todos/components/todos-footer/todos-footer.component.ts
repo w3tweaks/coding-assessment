@@ -19,8 +19,8 @@ export class TodosFooterComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.subscription = this.todosService.allTodos$.subscribe(todos => {
-      this.visible = todos && todos.length > 0;
+    this.subscription = this.todosService.todosExist$.subscribe(todosExist => {
+      this.visible = todosExist;
       this.changeDetectorRef.markForCheck();
     });
   }
