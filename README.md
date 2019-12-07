@@ -16,6 +16,8 @@ The previous developer left the project half-finshed, but quite a bit of infrast
 - Your code must pass AOT compilation when running: `ng build`
 - Neatness and organization count!
 
+You'll find all of the code for todos in the src/app/todos module.
+
 ## Editing a todo
 
 When editing a todo, you'll need to modify your form's HTML input class attribute to "edit". To make the form visible, you will need to make the form appear after the div classed "view" in the markup.
