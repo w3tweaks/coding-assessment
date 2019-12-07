@@ -19,32 +19,29 @@ describe('Todos Reducer', () => {
 
   describe('Add Todo', () => {
     it('Should add a new Todo', () => {
+      const text = 'New todo';
       const todo: ITodo = {
-        text: 'New todo',
+        text,
         completed: false,
       };
 
-      const newState = todosReducer(state, TodoActions.addTodo({ todo }));
+      const newState = todosReducer(state, TodoActions.addTodo({ text }));
       expect(newState.todos).toEqual([todo]);
     });
   });
 
   describe('Remove Todo', () => {
     it('should remove a Todo', () => {
+      const text1 = 'Todo 1';
       const todo1: ITodo = {
-        text: 'Todo 1',
-        completed: false,
-      };
-
-      const todo2: ITodo = {
-        text: 'Todo 2',
+        text: text1,
         completed: false,
       };
 
       let newState: ITodosState;
 
-      newState = todosReducer(state, TodoActions.addTodo({ todo: todo1 }));
-      newState = todosReducer(newState, TodoActions.addTodo({ todo: todo2 }));
+      newState = todosReducer(state, TodoActions.addTodo({ text: text1 }));
+      newState = todosReducer(newState, TodoActions.addTodo({ text: 'Todo 2' }));
       newState = todosReducer(newState, TodoActions.removeTodo({ index: 0 }));
       expect(newState.todos).toEqual([todo1]);
     });
@@ -52,14 +49,9 @@ describe('Todos Reducer', () => {
 
   describe('Toggle Todo completed', () => {
     it('should toggle a todo as completed or not completed', () => {
-      const todo: ITodo = {
-        text: 'New todo',
-        completed: false,
-      };
-
       let newState: ITodosState;
 
-      newState = todosReducer(state, TodoActions.addTodo({ todo }));
+      newState = todosReducer(state, TodoActions.addTodo({ text: 'New todo' }));
       newState = todosReducer(newState, TodoActions.toggleCompleted({ index: 0 }));
       expect(newState.todos[0].completed).toEqual(true);
 
@@ -70,44 +62,19 @@ describe('Todos Reducer', () => {
 
   describe('Update Todo', () => {
     it('should update the `text` of a todo', () => {
-      const todo1: ITodo = {
-        text: 'Todo 1',
-        completed: false,
-      };
-
-      const todo2: ITodo = {
-        text: 'Todo 2',
-        completed: false,
-      };
-
-      const todo3: ITodo = {
-        text: 'Todo 3',
-        completed: false,
-      };
-
       let newState: ITodosState;
-      newState = todosReducer(state, TodoActions.addTodo({ todo: todo1 }));
-      newState = todosReducer(newState, TodoActions.addTodo({ todo: todo2 }));
-      newState = todosReducer(newState, TodoActions.addTodo({ todo: todo3 }));
+      newState = todosReducer(state, TodoActions.addTodo({ text: 'Todo 1' }));
+      newState = todosReducer(newState, TodoActions.addTodo({ text: 'Todo 2' }));
+      newState = todosReducer(newState, TodoActions.addTodo({ text: 'Todo 3' }));
       newState = todosReducer(newState, TodoActions.updateTodo({ index: 1, text: 'Updated' }));
       expect(newState.todos[1].text).toEqual('Updated');
     });
   });
 
   describe('Toggle All Completed', () => {
-    const todo1: ITodo = {
-      text: 'Todo 1',
-      completed: false,
-    };
-
-    const todo2: ITodo = {
-      text: 'Todo 2',
-      completed: false,
-    };
-
     let newState: ITodosState;
-    newState = todosReducer(state, TodoActions.addTodo({ todo: todo1 }));
-    newState = todosReducer(newState, TodoActions.addTodo({ todo: todo2 }));
+    newState = todosReducer(state, TodoActions.addTodo({ text: 'Todo 1' }));
+    newState = todosReducer(newState, TodoActions.addTodo({ text: 'Todo 2' }));
 
     it('should set all `Active` todos as `Completed`', () => {
       newState = todosReducer(newState, TodoActions.toggleAllCompleted());
@@ -124,19 +91,10 @@ describe('Todos Reducer', () => {
 
   describe('Clear Completed', () => {
     it('should clear all `Completed` todos', () => {
-      const todo1: ITodo = {
-        text: 'Todo 1',
-        completed: false,
-      };
-
-      const todo2: ITodo = {
-        text: 'Todo 2',
-        completed: true,
-      };
-
       let newState: ITodosState;
-      newState = todosReducer(state, TodoActions.addTodo({ todo: todo1 }));
-      newState = todosReducer(newState, TodoActions.addTodo({ todo: todo2 }));
+      newState = todosReducer(state, TodoActions.addTodo({ text: 'Todo 1' }));
+      newState = todosReducer(newState, TodoActions.addTodo({ text: 'Todo 2' }));
+      newState = todosReducer(newState, TodoActions.toggleCompleted({ index: 1 }));
       newState = todosReducer(newState, TodoActions.clearCompleted());
       expect(newState.todos.length).toEqual(1);
     });

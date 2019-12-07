@@ -6,7 +6,7 @@ import { StoreModule } from '@ngrx/store';
 import { ClearCompletedComponent } from './components/clear-completed/clear-completed.component';
 import { CompleteAllComponent } from './components/complete-all/complete-all.component';
 import { TodosCountComponent } from './components/todos-count/todos-count.component';
-import { CreateTodoFormComponent } from './components/create-todo/create-todo.component';
+import { TodoFormComponent } from './components/todo-form/todo-form.component';
 import { FilterModeComponent } from './components/filter-mode/filter-mode.component';
 import { TodoComponent } from './components/todo/todo.component';
 import { TodosFooterComponent } from './components/todos-footer/todos-footer.component';
@@ -17,7 +17,7 @@ import { todosReducer } from './state/todos.reducer';
 const DECLARATIONS = [
   ClearCompletedComponent,
   CompleteAllComponent,
-  CreateTodoFormComponent,
+  TodoFormComponent,
   FilterModeComponent,
   TodoComponent,
   TodosCountComponent,

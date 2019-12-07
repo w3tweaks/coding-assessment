@@ -1,14 +1,18 @@
 import { createAction, props } from '@ngrx/store';
-import { ITodo } from '../interfaces';
 import { FILTER_MODES } from '../constants/filter-modes';
 
 export const addTodo = createAction(
   '[Todos] Add Todo',
-  props<{ todo: ITodo }>(),
+  props<{ text: string }>(),
 );
 
 export const removeTodo = createAction(
   '[Todos] Remove Todo',
+  props<{ index: number }>(),
+);
+
+export const editTodo = createAction(
+  '[Todos] Edit Todo',
   props<{ index: number }>(),
 );
 

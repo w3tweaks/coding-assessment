@@ -1,4 +1,4 @@
-import { Action, createReducer, on, State } from '@ngrx/store';
+import { Action, createReducer, on } from '@ngrx/store';
 import * as TodoActions from './todo.actions';
 
 import { FILTER_MODES } from './../constants/filter-modes';
@@ -17,9 +17,9 @@ export const initialState: ITodosState = {
 export function todosReducer(state: ITodosState, action: Action) {
   return createReducer(
     initialState,
-    on(TodoActions.addTodo, (existingState, { todo }) => ({
+    on(TodoActions.addTodo, (existingState, { text }) => ({
       ...existingState,
-      todos: [todo, ...existingState.todos],
+      todos: [{ text, completed: false }, ...existingState.todos],
     })),
     on(TodoActions.removeTodo, (existingState, { index }) => {
       const updatedTodos = [...existingState.todos];
@@ -38,7 +38,7 @@ export function todosReducer(state: ITodosState, action: Action) {
       } as ITodosState);
     }),
     on(TodoActions.updateTodo, (existingState, { index, text }) => {
-      const todo = existingState.todos[index];
+      const todo = {...existingState[index]};
       todo.text = text;
 
       return Object.assign({}, existingState, {
@@ -55,7 +55,7 @@ export function todosReducer(state: ITodosState, action: Action) {
         const updatedTodo = {...todo};
         updatedTodo.completed = !updatedTodo.completed;
         return updatedTodo;
-      })]
+      })],
     })),
     on(TodoActions.clearCompleted, (existingState) => ({
       ...existingState,
@@ -64,5 +64,5 @@ export function todosReducer(state: ITodosState, action: Action) {
   )(state, action);
 }
 
-export const todos = (state: ITodosState) => state.todos;
 export const filterMode = (state: ITodosState) => state.filterMode;
+export const todos = (state: ITodosState) => state.todos;

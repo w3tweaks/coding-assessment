@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { ITodo } from '@app/todos/interfaces';
@@ -6,15 +6,28 @@ import { TodosService } from '@app/todos/services/todos.service';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
-  selector: 'app-create-todo-form',
-  templateUrl: './create-todo.component.html',
+  selector: 'app-todo-form',
+  templateUrl: './todo-form.component.html',
 })
-export class CreateTodoFormComponent implements AfterViewInit, OnInit {
+export class TodoFormComponent implements AfterViewInit, OnInit {
 
   @ViewChild('textInput', { static: false })
   textInput: ElementRef;
 
+  @Input()
+  index: number = null;
+
+  @Input()
+  todo: ITodo = null;
+
+  @Output()
+  updated = new EventEmitter<boolean>();
+
   form: FormGroup;
+
+  get cssClass(): string {
+    return this.todo ? 'edit' : 'new-todo';
+  }
 
   constructor (
     private formBuilder: FormBuilder,
@@ -28,18 +41,22 @@ export class CreateTodoFormComponent implements AfterViewInit, OnInit {
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       text: [
-        '', [Validators.required]
+        this.todo ? this.todo.text : '', [Validators.required]
       ]
     });
   }
 
   onSubmit(): void {
-    const todo: ITodo = {
-      text: this.form.value.text,
-      completed: false,
-    };
+    const text = this.form.value.text;
 
-    this.todosService.addTodo(todo);
+    if (this.todo) {
+      this.todosService.updateTodo(this.index, text);
+      this.updated.emit(true);
+    }
+    else {
+      this.todosService.addTodo(text);
+    }
+
     this.form.reset();
     this.focusTextInput();
   }

@@ -23,8 +23,8 @@ export class TodosService {
     this.todos$ = this.store.select(todoSelectors.todos);
   }
 
-  addTodo(todo: ITodo): void {
-    this.store.dispatch(TodoActions.addTodo({ todo }));
+  addTodo(text: string): void {
+    this.store.dispatch(TodoActions.addTodo({ text }));
   }
 
   removeTodo(index: number): void {

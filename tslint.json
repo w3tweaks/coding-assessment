@@ -66,6 +66,10 @@
       "as-needed"
     ],
     "object-literal-sort-keys": false,
+    "one-line": [
+      false,
+      "else"
+    ],
     "ordered-imports": false,
     "quotemark": [
       true,

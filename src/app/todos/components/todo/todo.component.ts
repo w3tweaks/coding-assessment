@@ -21,12 +21,24 @@ export class TodoComponent {
   @Output()
   removeTodo = new EventEmitter<number>();
 
+  editing = false;
+
   markAsComplete(): void {
     this.completeTodo.emit(this.index);
   }
 
   remove(): void {
     this.removeTodo.emit(this.index);
+  }
+
+  toggleEditMode(): void {
+    this.editing = true;
+  }
+
+  onTodoUpdated(updated: boolean): void {
+    if (updated) {
+      this.editing = false;
+    }
   }
 
 }
