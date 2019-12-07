@@ -78,14 +78,14 @@ describe('Todos Reducer', () => {
 
     it('should set all `Active` todos as `Completed`', () => {
       newState = todosReducer(newState, TodoActions.toggleAllCompleted());
-      expect(newState.todos[0].completed).toBeTrue();
-      expect(newState.todos[1].completed).toBeTrue();
+      expect(newState.todos[0].completed).toEqual(true);
+      expect(newState.todos[1].completed).toEqual(true);
     });
 
     it('should set all `Completed` todos as `Active`', () => {
       newState = todosReducer(newState, TodoActions.toggleAllCompleted());
-      expect(newState.todos[0].completed).toBeFalse();
-      expect(newState.todos[1].completed).toBeFalse();
+      expect(newState.todos[0].completed).toEqual(false);
+      expect(newState.todos[1].completed).toEqual(false);
     });
   });
 
