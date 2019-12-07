@@ -1,8 +1,0 @@
-<li [ngClass]="{ 'completed': todo.completed, 'editing': editing }">
-  <div class="view">
-    <input class="toggle" type="checkbox" [attr.checked]="todo.completed" (change)="markAsComplete()" />
-    <label (dblclick)="toggleEditMode()">{{ todo.text }}</label>
-    <button class="destroy" (click)="remove()"></button>
-  </div>
-  <app-todo-form *ngIf="editing" [todo]="todo" [index]="index" (updated)="onTodoUpdated($event)"></app-todo-form>
-</li>

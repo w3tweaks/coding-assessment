@@ -1,4 +1,9 @@
-<ul class="todo-list" *ngIf="todos">
-  <app-todo *ngFor="let todo of todos; let i = index;" [todo]="todo" [index]="i" (completeTodo)="onTodoCompleted($event)" (removeTodo)="onRemoveTodo($event)"></app-todo>
+<ul class="todo-list">
+  <li>
+    <div class="view">
+      <input class="toggle" type="checkbox" />
+      <label></label>
+      <button class="destroy"></button>
+    </div>
+  </li>
 </ul>
-<p *ngIf="noMatches" class="no-matches">There are no items matching that filter</p>

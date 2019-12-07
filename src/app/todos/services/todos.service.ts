@@ -12,17 +12,11 @@ import * as todoSelectors from '../state/todo.selectors';
 export class TodosService {
 
   allTodos$: Observable<ITodo[]>;
-  filterMode$: Observable<FILTER_MODES>;
-  todos$: Observable<ITodo[]>;
-  todosExist$: Observable<boolean>;
 
   constructor(
     private store: Store<ITodosState>,
   ) {
     this.allTodos$ = this.store.select(todoSelectors.allTodos);
-    this.filterMode$ = this.store.select(todoSelectors.filterMode);
-    this.todos$ = this.store.select(todoSelectors.todos);
-    this.todosExist$ = this.store.select(todoSelectors.todosExist);
   }
 
   addTodo(text: string): void {

@@ -1,3 +1,0 @@
-<form *ngIf="form" [formGroup]="form" (ngSubmit)="onSubmit()" (keydown.Tab)="onSubmit()" enctype="application/x-www-form-urlencoded" role="form" novalidate>
-  <input #textInput formControlName="text" [class]="cssClass" placeholder="{{ todo ? '' : 'What needs to be done?' }}" autofocus>
-</form>
