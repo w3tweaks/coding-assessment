@@ -26,3 +26,7 @@ When editing a todo, you'll need to modify your form's HTML input class attribut
 ### Message when no todos are present
 
 Please add a message to be displayed when filtering by "Active" or "Completed" and no todos are present. A CSS class is available to use for your element, 'no-matches'
+
+### Angular CLI
+
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.19.
