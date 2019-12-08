@@ -8,7 +8,7 @@ Your mission, should you choose to accept it, is to fork this repo and make the 
 
 The previous developer left the project half-finshed, but quite a bit of infrastructure is in place and we'd like to see how you would finish it out.
 
-- All of the styling for the app is complete and almost all of the HTML markup you'll need is present in the app.component.html file.
+- All of the styling for the app is complete and almost all of the HTML markup you'll need is present in the [app.component.html](https://github.com/labcorp-clinical-development/coding-assessment/blob/master/src/app/app.component.html) file.
 - In order to complete this project, you're going to have to have knowledge of [Angular](https://angular.io), [Ngrx](https://ngrx.io/), Rxjs, inter-component communication and how to make components re-usable.
 - You may **not** use Ngrx/Data or Ngrx/Entities to complete this project.
 - It isn't necessary to write end-to-end tests for your work, but if you choose to write unit tests for your reducer or components, it would be a big plus.
