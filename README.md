@@ -19,6 +19,10 @@ You'll find all of the code for todos in the [src/app/todos](https://github.com/
 
 ## Notes:
 
+### Order of todos
+
+Todo MVC puts the newest todo at the end of the list; this seems wrong. Please add new todo items at the beginning of the list.
+
 ### Editing a todo
 
 When editing a todo, you'll need to modify your form's HTML input class attribute to "edit". To make the form visible, it must come after the `div` classed "view" in the markup here: [todo-list.component.html](https://github.com/labcorp-clinical-development/coding-assessment/blob/master/src/app/todos/components/todo-list/todo-list.component.html)
