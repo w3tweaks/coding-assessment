@@ -31,6 +31,10 @@ When editing a todo, you'll need to modify your form's HTML input class attribut
 
 Please add a message to be displayed when filtering by "Active" or "Completed" and no todos are present. A CSS class is available to use for your element, 'no-matches'
 
+### What else should I be aware of?
+
+LabCorp Clinical Development projects are some of the most challenging you'll find in the entire organization. As such, the margin for error and leeway on certain aspects of the code you provide is very thin, so be careful and measured in your approach.
+
 ### Angular CLI
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.19.
