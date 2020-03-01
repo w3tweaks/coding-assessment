@@ -25,9 +25,10 @@ export function todosReducer(state: ITodosState, action: Action) {
       const updatedTodos = [...existingState.todos];
       updatedTodos.splice(index, 1);
 
-      return Object.assign({}, existingState, {
+      return {
+        ...existingState,
         todos: updatedTodos,
-      } as ITodosState);
+      };
     }),
     on(TodoActions.changeFilterMode, (existingState, { mode }) => ({
       ...existingState,
