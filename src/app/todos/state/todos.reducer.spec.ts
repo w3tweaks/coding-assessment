@@ -12,11 +12,6 @@ describe('Todos Reducer', () => {
     expect(state).toEqual(initialState);
   });
 
-  afterEach(() => {
-    state = clone(initialState);
-    expect(state).toEqual(initialState);
-  });
-
   describe('Add Todo', () => {
     it('Should add a new Todo', () => {
       const text = 'New todo';
