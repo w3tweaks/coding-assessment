@@ -1,9 +1,9 @@
 import { createSelector, createFeatureSelector } from '@ngrx/store';
-import * as todosState from './todos.reducer';
+import { TodosState } from './todos.state';
 
-export const todosSelector = createFeatureSelector<todosState.ITodosState>('todos');
+export const todosSelector = createFeatureSelector<TodosState>('todos');
 
 export const allTodos = createSelector(
   todosSelector,
-  todosState.todos,
+  state => state.todoList
 );

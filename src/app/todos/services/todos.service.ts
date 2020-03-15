@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 
 import { ITodo } from '../interfaces';
-import { ITodosState } from '../state/todos.reducer';
+import { TodosState } from '../state/todos.state';
 import { FILTER_MODES } from '../constants/filter-modes';
 import * as TodoActions from '../state/todo.actions';
 import * as todoSelectors from '../state/todo.selectors';
@@ -14,7 +14,7 @@ export class TodosService {
   allTodos$: Observable<ITodo[]>;
 
   constructor(
-    private store: Store<ITodosState>,
+    private store: Store<TodosState>,
   ) {
     this.allTodos$ = this.store.select(todoSelectors.allTodos);
   }
@@ -35,8 +35,12 @@ export class TodosService {
     this.store.dispatch(TodoActions.toggleAllCompleted());
   }
 
-  updateTodo(index: number, text: string): void {
-    this.store.dispatch(TodoActions.updateTodo({ index, text }));
+  updateTodoStatus(index: number, completed: boolean): void {
+    this.store.dispatch(TodoActions.updateTodoStatus({ index, completed }));
+  }
+
+  updateTodoText(index: number, text: string): void {
+    this.store.dispatch(TodoActions.updateTodoText({ index, text }));
   }
 
   changeFilterMode(mode: FILTER_MODES): void {

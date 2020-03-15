@@ -1,0 +1,16 @@
+<section class="todoapp">
+    <todos-header></todos-header>
+    <app-complete-all></app-complete-all>
+    <ng-container *ngIf="(completedTodosList$ | async)?.length > 0; else noTodosPresent">
+        <ng-container *ngIf="(completedTodosList$ | async) as todosList">
+            <ng-container *ngFor="let item of todosList;let i=index">
+                <app-todos-list [item]="item" [index]="i"></app-todos-list>
+            </ng-container>
+        </ng-container>
+    </ng-container>
+    <ng-template #noTodosPresent>
+        <message [message]="'Please add todos to list'"></message>
+    </ng-template>
+    <todos-footer></todos-footer>
+</section>
+<common-footer></common-footer>

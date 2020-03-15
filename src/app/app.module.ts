@@ -6,6 +6,10 @@ import { environment } from '@app/environments/environment';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { TodosModule } from './todos/todos.module';
+import { TodosComponentModule } from './todos/components/components.module';
+import { ComponentModules } from './components/components.module';
+import { RouterModule, PreloadAllModules } from '@angular/router';
+import { AppRoutes } from './app.routes';
 
 @NgModule({
   declarations: [
@@ -23,8 +27,18 @@ import { TodosModule } from './todos/todos.module';
       maxAge: 25,
     }) : [],
     TodosModule,
+    TodosComponentModule,
+    ComponentModules,
+    RouterModule.forRoot(AppRoutes,
+      {
+        enableTracing: false, // <-- debugging purposes only
+        preloadingStrategy: PreloadAllModules,
+        useHash: true
+      }
+    )
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: [TodosModule]
 })
 export class AppModule { }

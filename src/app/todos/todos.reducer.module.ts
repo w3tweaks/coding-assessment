@@ -13,28 +13,15 @@ import { TodosRoutes } from './todos.routes';
 import { ActiveTodosComponent } from './pages/active-todos/active-todos';
 import { CompletedTodosComponent } from './pages/completed-todos/completed-todos';
 import { TodosComponent } from './todos';
-import { TodosReducerModule } from './todos.reducer.module';
-import { CommonModule } from '@angular/common';
+import { GetInitialState } from './state';
 
 @NgModule({
-  declarations: [
-    ActiveTodosComponent,
-    CompletedTodosComponent,
-    TodosComponent
-  ],
-  exports: [
-  ],
   imports: [
-    FormsModule,
-    ReactiveFormsModule,
-    TodosComponentModule,
-    ComponentModules,
-    RouterModule.forRoot(TodosRoutes),
-    TodosReducerModule,
-    CommonModule
+    StoreModule.forFeature('todos', todosReducer, {
+      initialState: GetInitialState
+    })
   ],
   providers: [
-    TodosService,
   ],
 })
-export class TodosModule {}
+export class TodosReducerModule {}

@@ -1,0 +1,15 @@
+<footer class="footer">
+    <span class="todo-count">{{(todosListLength$ | async)?.itemLeftCounter}} Items left</span>
+    <ul class="filters">
+        <li>
+            <a [ngClass]="{selected: location.path() == ''}" (click)="navigation('/')">All</a>
+        </li>
+        <li>
+            <a [ngClass]="{selected: location.path() == '/active'}" (click)="navigation('active')">Active</a>
+        </li>
+        <li>
+            <a [ngClass]="{selected: location.path() == '/completed'}" (click)="navigation('completed')">Completed</a>
+        </li>
+    </ul>
+    <button *ngIf="(todosListLength$ | async)?.itemCompletedCounter > 0" (click)="todosService.clearCompleted()" class="clear-completed">Clear completed</button>
+</footer>
