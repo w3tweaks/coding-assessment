@@ -1,4 +1,5 @@
 import { clone } from '@app/lib/utils';
+// Localstorage Name
 let localStorageItemName = 'angular-todos-list';
 
 export function todosMapping (todos, text) {
