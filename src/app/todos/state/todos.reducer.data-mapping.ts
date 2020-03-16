@@ -8,7 +8,8 @@ export function todosMapping (todos, text) {
     // push the new todos with existing list
     todoList = ([{ 
         text: text,
-        completed: false
+        completed: false,
+        index: ((todoList.length > 0) ? (todoList[0].index + 1) : 0)
     }]).concat(todoList);
 
     // Store the todos in localstorage incase page got refreshed
@@ -24,8 +25,11 @@ export function retrieveToDoList() {
 
 export function updateTodoStatusMapping (todos, index, completed) {
     let todoList = (todos) ? clone(todos) : [];
+    let i = todoList.findIndex(item => {
+        return item.index == index;
+    });
     if (todoList) {
-        todoList[index].completed = completed;
+        todoList[i].completed = completed;
     }
     localStorage.setItem(localStorageItemName, JSON.stringify(todoList));
     return todoList;
@@ -39,7 +43,10 @@ export function clearCompletedTodos(todoList) {
 
 export function removeTodo(todoList, index) {
     const updatedTodos = [...todoList];
-    updatedTodos.splice(index, 1);
+    let i = updatedTodos.findIndex(item => {
+        return item.index == index;
+    });
+    updatedTodos.splice(i, 1);
     localStorage.setItem(localStorageItemName, JSON.stringify(updatedTodos));
     return updatedTodos;
 }
@@ -47,11 +54,14 @@ export function removeTodo(todoList, index) {
 export function updateTodoTextMapping (todos, index, text) {
     let todoList = (todos) ? clone(todos) : [];
     if (todoList) {
+        let i = todoList.findIndex(item => {
+            return item.index == index;
+        });
         // if text is not empty update with new text else delete the todo from the list
         if(text != ''){
-            todoList[index].text = text;
+            todoList[i].text = text;
         } else {
-            todoList.splice(index, 1);
+            todoList.splice(i, 1);
         }
     }
 

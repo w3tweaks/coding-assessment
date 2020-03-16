@@ -16,7 +16,8 @@ describe('Todos Reducer', () => {
 
       expect(state.todoList).toEqual([{
         text: 'Test',
-        completed: false
+        completed: false,
+        index: 0
       }]);
     });
   });
@@ -24,10 +25,12 @@ describe('Todos Reducer', () => {
     it('Should remove the dispatched index data', () => {
       initialState.todoList = [{
         text: 'Test1',
-        completed: true
+        completed: true,
+        index: 0
       },{
         text: 'Test2',
-        completed: true
+        completed: true,
+        index: 1
       }];
       const action = todoActions.removeTodo({index: 1});
 
@@ -35,7 +38,8 @@ describe('Todos Reducer', () => {
 
       expect(state.todoList).toEqual([{
         text: 'Test1',
-        completed: true
+        completed: true,
+        index: 0
       }]);
     });
   });
@@ -43,13 +47,16 @@ describe('Todos Reducer', () => {
     it('Should clear all completed todos', () => {
       initialState.todoList = [{
         text: 'Test1',
-        completed: true
+        completed: true,
+        index: 0
       },{
         text: 'Test2',
-        completed: true
+        completed: true,
+        index: 1
       },{
         text: 'Test3',
-        completed: false
+        completed: false,
+        index: 3
       }];
       const action = todoActions.clearCompleted();
 
@@ -57,7 +64,8 @@ describe('Todos Reducer', () => {
 
       expect(state.todoList).toEqual([{
         text: 'Test3',
-        completed: false
+        completed: false,
+        index: 3
       }]);
     });
   });
@@ -65,13 +73,16 @@ describe('Todos Reducer', () => {
     it('Should update the status of the todos', () => {
       initialState.todoList = [{
         text: 'Test1',
-        completed: true
+        completed: true,
+        index: 1
       },{
         text: 'Test2',
-        completed: true
+        completed: true,
+        index: 2
       },{
         text: 'Test3',
-        completed: false
+        completed: false,
+        index: 3
       }];
       const action = todoActions.updateTodoStatus({index: 1, completed: false});
 
@@ -79,13 +90,16 @@ describe('Todos Reducer', () => {
 
       expect(state.todoList).toEqual([{
         text: 'Test1',
-        completed: true
+        completed: false,
+        index: 1
       },{
         text: 'Test2',
-        completed: false
+        completed: true,
+        index: 2
       },{
         text: 'Test3',
-        completed: false
+        completed: false,
+        index: 3
       }]);
     });
   });
@@ -94,31 +108,37 @@ describe('Todos Reducer', () => {
     it('Should update the text of the todos', () => {
       initialState.todoList = [{
         text: 'Test1',
-        completed: true
+        completed: true,
+        index: 1
       },{
         text: 'Test2',
-        completed: true
+        completed: true,
+        index: 2
       }];
       const action = todoActions.updateTodoText({index: 1, text: 'Test3'});
 
       const state = todosReducer(initialState, action);
 
       expect(state.todoList).toEqual([{
-        text: 'Test1',
-        completed: true
-      },{
         text: 'Test3',
-        completed: true
+        completed: true,
+        index: 1
+      },{
+        text: 'Test2',
+        completed: true,
+        index: 2
       }]);
       initialState.todoList = [];
     });
     it('Should delete the todos when text is empty', () => {
       initialState.todoList = [{
         text: 'Test1',
-        completed: true
+        completed: true,
+        index: 0
       },{
         text: 'Test2',
-        completed: true
+        completed: true,
+        index: 1
       }];
       const action = todoActions.updateTodoText({index: 1, text: ''});
 
@@ -126,7 +146,8 @@ describe('Todos Reducer', () => {
 
       expect(state.todoList).toEqual([{
         text: 'Test1',
-        completed: true
+        completed: true,
+        index: 0
       }]);
       initialState.todoList = [];
     });
@@ -136,10 +157,12 @@ describe('Todos Reducer', () => {
     it('Should toggleAll todos to checked/unchecked', () => {
       initialState.todoList = [{
         text: 'Test1',
-        completed: true
+        completed: true,
+        index: 0
       },{
         text: 'Test2',
-        completed: true
+        completed: true,
+        index: 1
       }];
       const action = todoActions.toggleAllCompleted({checked: false});
 
@@ -147,10 +170,12 @@ describe('Todos Reducer', () => {
 
       expect(state.todoList).toEqual([{
         text: 'Test1',
-        completed: false
+        completed: false,
+        index: 0
       },{
         text: 'Test2',
-        completed: false
+        completed: false,
+        index: 1
       }]);
     });
   });

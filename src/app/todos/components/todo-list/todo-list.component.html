@@ -1,10 +1,10 @@
 <ul class="todo-list" *ngIf="item">
   <li [ngClass]="{'completed': item.completed,editing: editedTodo}">
     <div class="view">
-      <input class="toggle" (change)="onChange($event)" type="checkbox" value="{{index}}" [checked]="item.completed === true" />
+      <input class="toggle" (change)="onChange($event)" type="checkbox" value="{{item.index}}" [checked]="item.completed === true" />
       <label (dblclick)="doubleClickFunction()">{{item.text}}</label>
-      <button class="destroy" (click)="closeBtnClick(index)"></button>
+      <button class="destroy" (click)="closeBtnClick(item.index)"></button>
     </div>
-    <input class="edit" (blur)="doneEditing($event, index)" (keyup.enter)="doneEditing($event, index)" ngModel="item.text" value={{item.text}}>
+    <input class="edit" (blur)="doneEditing($event, item.index)" (keyup.enter)="doneEditing($event, item.index)" ngModel="item.text" value={{item.text}}>
   </li>
 </ul>
