@@ -15,6 +15,7 @@ export class TodosComponent {
   @ViewChild(Input) todoListInput: Input;
   todosList$: Observable<ITodo[]>;
   constructor(public todoStore: Store<fromTodoStore.TodosState>, private todosService: TodosService) {
+    // Get the todolist from the store. todosList$ will be subscribed in HTML async
     this.todosList$ = this.todoStore.select(fromTodoStore.allTodos);
   }
 }

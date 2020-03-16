@@ -29,6 +29,7 @@ export class CompleteAllComponent implements OnInit {
 
   ngOnInit(): void {
     this.completeAll$ = this.todoStore.select(fromTodoStore.allTodos).pipe(map((todos) => {
+      // filter the todos complete and return the boolen and length to make the toggle button checked/unchecked
       let todoList = todos.filter(todo => (todo.completed === false)).length;
       return {listLength: todos.length, checkFlag: !todoList};
     }));

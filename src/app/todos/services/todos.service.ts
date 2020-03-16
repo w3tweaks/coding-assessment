@@ -4,7 +4,6 @@ import { Store } from '@ngrx/store';
 
 import { ITodo } from '../interfaces';
 import { TodosState } from '../state/todos.state';
-import { FILTER_MODES } from '../constants/filter-modes';
 import * as TodoActions from '../state/todo.actions';
 import * as todoSelectors from '../state/todo.selectors';
 
@@ -41,10 +40,6 @@ export class TodosService {
 
   updateTodoText(index: number, text: string): void {
     this.store.dispatch(TodoActions.updateTodoText({ index, text }));
-  }
-
-  changeFilterMode(mode: FILTER_MODES): void {
-    this.store.dispatch(TodoActions.changeFilterMode({ mode }));
   }
 
   clearCompleted(): void {

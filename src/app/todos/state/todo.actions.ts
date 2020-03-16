@@ -1,5 +1,4 @@
 import { createAction, props } from '@ngrx/store';
-import { FILTER_MODES } from '../constants/filter-modes';
 
 export const addTodo = createAction(
   '[Todos] Add Todo',
@@ -29,11 +28,6 @@ export const toggleCompleted = createAction(
 export const toggleAllCompleted = createAction(
   '[Todos] Toggle All Completed',
     props<{checked: boolean}>()
-);
-
-export const changeFilterMode = createAction(
-  '[Todos] Change Filter Mode',
-  props<{ mode: FILTER_MODES }>()
 );
 
 export const clearCompleted = createAction(

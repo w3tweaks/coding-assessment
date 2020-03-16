@@ -1,7 +1,6 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import * as TodoActions from './todo.actions';
 
-import { FILTER_MODES } from './../constants/filter-modes';
 import { ITodo } from '../interfaces/ITodo';
 import * as TodosState from './todos.state';
 import { todosMapping, updateTodoStatusMapping, clearCompletedTodos, removeTodo, updateTodoTextMapping, toggleAllCompletedMapping } from './todos.reducer.data-mapping';
@@ -19,10 +18,6 @@ export function todosReducer(state: TodosState.TodosState, action: Action) {
         todoList: removeTodo(existingState.todoList, index)
       };
     }),
-    on(TodoActions.changeFilterMode, (existingState, { mode }) => ({
-      ...existingState,
-      filterMode: mode
-    })),
     on(TodoActions.clearCompleted, (existingState) => ({
       ...existingState,
       todoList: clearCompletedTodos(existingState.todoList)
