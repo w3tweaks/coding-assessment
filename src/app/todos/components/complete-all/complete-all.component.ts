@@ -1,7 +1,10 @@
 import { ChangeDetectorRef, ChangeDetectionStrategy, Component, OnInit, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 
 import { TodosService } from '@app/todos/services/todos.service';
+import { Store } from '@ngrx/store';
+import * as fromTodoStore from '@app/todos/state';
+import { map } from 'rxjs/operators';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -11,31 +14,27 @@ import { TodosService } from '@app/todos/services/todos.service';
   ],
   templateUrl: './complete-all.component.html',
 })
-export class CompleteAllComponent implements OnInit, OnDestroy {
+export class CompleteAllComponent implements OnInit {
 
   multipleTodosExist = false;
   subscription: Subscription;
+  completeAll$: Observable<object>;
 
   constructor (
     private changeDetectorRef: ChangeDetectorRef,
     private todosService: TodosService,
-  ) {}
+    public todoStore: Store<fromTodoStore.TodosState>
+  ) {
+  }
 
   ngOnInit(): void {
-    this.subscription = this.todosService.allTodos$.subscribe(todos => {
-      this.multipleTodosExist = todos && todos.length > 1;
-      this.changeDetectorRef.markForCheck();
-    });
+    this.completeAll$ = this.todoStore.select(fromTodoStore.allTodos).pipe(map((todos) => {
+      let todoList = todos.filter(todo => (todo.completed === false)).length;
+      return {listLength: todos.length, checkFlag: !todoList};
+    }));
   }
 
-  ngOnDestroy(): void {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
-    }
+  toggleCompleteAll(event): void {
+    this.todosService.toggleAllCompleted(event.target.checked);
   }
-
-  toggleCompleteAll(): void {
-    this.todosService.toggleAllCompleted();
-  }
-
 }

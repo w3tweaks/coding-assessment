@@ -1,5 +1,4 @@
-import  { clonedeep }  from 'lodash.clonedeep';
-
+import { clone } from '@app/lib/utils';
 let localStorageItemName = 'angular-todos-list';
 
 export function todosMapping (todos, text) {
@@ -18,7 +17,7 @@ export function retrieveToDoList() {
 }
 
 export function updateTodoStatusMapping (todos, index, completed) {
-    let todoList = (todos) ? JSON.parse(JSON.stringify(todos)) : [];
+    let todoList = (todos) ? clone(todos) : [];
     if (todoList) {
         todoList[index].completed = completed;
     }
@@ -40,10 +39,25 @@ export function removeTodo(todoList, index) {
 }
 
 export function updateTodoTextMapping (todos, index, text) {
-    let todoList = (todos) ? JSON.parse(JSON.stringify(todos)) : [];
+    let todoList = (todos) ? clone(todos) : [];
     if (todoList) {
-        todoList[index].text = text;
+        if(text != ''){
+            todoList[index].text = text;
+        } else {
+            todoList.splice(index, 1);
+        }
     }
+
     localStorage.setItem(localStorageItemName, JSON.stringify(todoList));
+    return todoList;
+}
+
+export function toggleAllCompletedMapping (todos, checked){
+    let todoList = (todos) ? clone(todos) : [];
+    todoList.forEach((item) => {
+        item.completed = checked;
+    });
+    localStorage.setItem(localStorageItemName, JSON.stringify(todoList));
+
     return todoList;
 }

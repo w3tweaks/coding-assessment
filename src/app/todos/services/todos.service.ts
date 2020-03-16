@@ -31,8 +31,8 @@ export class TodosService {
     this.store.dispatch(TodoActions.toggleCompleted({ index }));
   }
 
-  toggleAllCompleted(): void {
-    this.store.dispatch(TodoActions.toggleAllCompleted());
+  toggleAllCompleted(checked: boolean): void {
+    this.store.dispatch(TodoActions.toggleAllCompleted({checked}));
   }
 
   updateTodoStatus(index: number, completed: boolean): void {

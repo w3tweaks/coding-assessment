@@ -27,7 +27,8 @@ export const toggleCompleted = createAction(
 );
 
 export const toggleAllCompleted = createAction(
-  '[Todos] Toggle All Completed'
+  '[Todos] Toggle All Completed',
+    props<{checked: boolean}>()
 );
 
 export const changeFilterMode = createAction(

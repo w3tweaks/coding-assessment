@@ -1,44 +1,157 @@
-import { initialState, ITodosState, todosReducer } from './todos.reducer';
 import { ITodo } from './../interfaces';
-import * as TodoActions from './todo.actions';
-
+import * as todoActions from './todo.actions';
+import { initialState } from './todos.state';
 import { clone } from '@app/lib/utils';
+import { todosReducer } from './todos.reducer';
 
 describe('Todos Reducer', () => {
-  let state: ITodosState;
-
-  beforeEach(() => {
-    state = clone(initialState);
-    expect(state).toEqual(initialState);
+  afterEach(() => {
+    initialState.todoList = [];
   });
+  describe('addTodo action', () => {
+    it('Should return dispatched data', () => {
+      const action = todoActions.addTodo({text: 'Test'});
 
-  describe('Add Todo', () => {
-    it('Should add a new Todo', () => {
-      const text = 'New todo';
-      const todo: ITodo = {
-        text,
-        completed: false,
-      };
+      const state = todosReducer(initialState, action);
 
-      const newState = todosReducer(state, TodoActions.addTodo({ text }));
-      expect(newState.todos).toEqual([todo]);
+      expect(state.todoList).toEqual([{
+        text: 'Test',
+        completed: false
+      }]);
+    });
+  });
+  describe('removeTodo action', () => {
+    it('Should remove the dispatched index data', () => {
+      initialState.todoList = [{
+        text: 'Test1',
+        completed: true
+      },{
+        text: 'Test2',
+        completed: true
+      }];
+      const action = todoActions.removeTodo({index: 1});
+
+      const state = todosReducer(initialState, action);
+
+      expect(state.todoList).toEqual([{
+        text: 'Test1',
+        completed: true
+      }]);
+    });
+  });
+  describe('clearCompleted action', () => {
+    it('Should clear all completed todos', () => {
+      initialState.todoList = [{
+        text: 'Test1',
+        completed: true
+      },{
+        text: 'Test2',
+        completed: true
+      },{
+        text: 'Test3',
+        completed: false
+      }];
+      const action = todoActions.clearCompleted();
+
+      const state = todosReducer(initialState, action);
+
+      expect(state.todoList).toEqual([{
+        text: 'Test3',
+        completed: false
+      }]);
+    });
+  });
+  describe('updateTodoStatus action', () => {
+    it('Should update the status of the todos', () => {
+      initialState.todoList = [{
+        text: 'Test1',
+        completed: true
+      },{
+        text: 'Test2',
+        completed: true
+      },{
+        text: 'Test3',
+        completed: false
+      }];
+      const action = todoActions.updateTodoStatus({index: 1, completed: false});
+
+      const state = todosReducer(initialState, action);
+
+      expect(state.todoList).toEqual([{
+        text: 'Test1',
+        completed: true
+      },{
+        text: 'Test2',
+        completed: false
+      },{
+        text: 'Test3',
+        completed: false
+      }]);
     });
   });
 
-  describe('Remove Todo', () => {
-    it('should remove a Todo', () => {
-      const text1 = 'Todo 1';
-      const todo1: ITodo = {
-        text: text1,
-        completed: false,
-      };
+  describe('updateTodoText action', () => {
+    it('Should update the text of the todos', () => {
+      initialState.todoList = [{
+        text: 'Test1',
+        completed: true
+      },{
+        text: 'Test2',
+        completed: true
+      }];
+      const action = todoActions.updateTodoText({index: 1, text: 'Test3'});
 
-      let newState: ITodosState;
+      const state = todosReducer(initialState, action);
 
-      newState = todosReducer(state, TodoActions.addTodo({ text: text1 }));
-      newState = todosReducer(newState, TodoActions.addTodo({ text: 'Todo 2' }));
-      newState = todosReducer(newState, TodoActions.removeTodo({ index: 0 }));
-      expect(newState.todos).toEqual([todo1]);
+      expect(state.todoList).toEqual([{
+        text: 'Test1',
+        completed: true
+      },{
+        text: 'Test3',
+        completed: true
+      }]);
+      initialState.todoList = [];
+    });
+    it('Should delete the todos when text is empty', () => {
+      initialState.todoList = [{
+        text: 'Test1',
+        completed: true
+      },{
+        text: 'Test2',
+        completed: true
+      }];
+      const action = todoActions.updateTodoText({index: 1, text: ''});
+
+      const state = todosReducer(initialState, action);
+
+      expect(state.todoList).toEqual([{
+        text: 'Test1',
+        completed: true
+      }]);
+      initialState.todoList = [];
+    });
+  });
+
+  describe('toggleAllCompleted action', () => {
+    it('Should toggleAll todos to checked/unchecked', () => {
+      initialState.todoList = [{
+        text: 'Test1',
+        completed: true
+      },{
+        text: 'Test2',
+        completed: true
+      }];
+      const action = todoActions.toggleAllCompleted({checked: false});
+
+      const state = todosReducer(initialState, action);
+
+      expect(state.todoList).toEqual([{
+        text: 'Test1',
+        completed: false
+      },{
+        text: 'Test2',
+        completed: false
+      }]);
     });
   });
 });

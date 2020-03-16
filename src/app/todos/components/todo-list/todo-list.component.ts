@@ -24,7 +24,6 @@ export class TodosListComponent {
 
   doubleClickFunction() {
     this.editedTodo = true;
-    console.log('editedTodo');
   }
 
   blurFn() {

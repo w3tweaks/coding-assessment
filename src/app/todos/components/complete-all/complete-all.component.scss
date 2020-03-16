@@ -1,3 +1,7 @@
 .toggle-all-label {
   cursor: pointer;
 }
+
+.toggle-all:checked + label:before {
+  color: #737373;
+}
